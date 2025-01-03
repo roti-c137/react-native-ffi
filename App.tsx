@@ -28,6 +28,12 @@ import {
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+import { NativeModules } from 'react-native';
+const { NativeModule } = NativeModules;
+
+NativeModule.add(10, 5).then((result:number) => {
+  console.log('Result from Rust via Objective-C:', result); // Outputs: 15
+});
 
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
